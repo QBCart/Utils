@@ -1,0 +1,33 @@
+{
+  "name": "@qbcart/utils",
+  "version": "1.0.0",
+  "description": "Utilities common across the QBCart javascript ecosystem.",
+  "author": "QbCart Inc.",
+  "contributors": [
+    "Allan Mobley",
+    "Michael Shea"
+  ],
+  "main": "index.js",
+  "module": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QBCart/Utils.git"
+  },
+  "bugs": {
+    "url": "https://github.com/QBCart/Utils/issues"
+  },
+  "homepage": "https://github.com/QBCart/Utils#readme",
+  "scripts": {
+    "build": "rimraf dist && tsc",
+    "build:npm": "tsc && cp package.json dist && cp README.md dist",
+    "format": "prettier --write .",
+    "lint": "prettier --check .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:ci": "echo \"All Good\" && exit 0"
+  },
+  "devDependencies": {
+    "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.1.5"
+  }
+}
