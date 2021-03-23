@@ -1,0 +1,22 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {}
+  },
+  "plugins": ["@typescript-eslint"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+  ],
+  "rules": {
+    "@typescript-eslint/no-explicit-any": "off",
+  },
+  "settings": {},
+  "env": {
+    "browser": true,
+    "amd": true,
+    "node": true
+  }
+}
