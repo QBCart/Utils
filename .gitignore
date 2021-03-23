@@ -3,6 +3,8 @@
 # generated output
 node_modules
 dist
+build
+.snowpack
 
 # Apple Snooping File
 .DS_Store
