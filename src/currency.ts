@@ -9,6 +9,6 @@ export const usCurrencyFormatter = new Intl.NumberFormat('en-US', {
 /**
  * Converts a number to a US currency string.
  */
-export function toUSCurrency(num: number) {
+export function toUSCurrency(num: number): string {
   return usCurrencyFormatter.format(num);
 }
