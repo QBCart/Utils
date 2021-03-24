@@ -5,11 +5,11 @@
  */
 
 import { usCurrencyFormatter, toUSCurrency } from './currency';
-import { isNumber, WholeNumberGreaterThanZeroConverter } from './number';
+import { isNumber, toWholeNumberGreaterThanZero } from './number';
 
 export {
   usCurrencyFormatter,
   toUSCurrency,
   isNumber,
-  WholeNumberGreaterThanZeroConverter
+  toWholeNumberGreaterThanZero
 };

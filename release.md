@@ -2,7 +2,7 @@
 
 # New
 
-- Utilities common across the QBCart javascript ecosystem..
+- none
 
 # Fixes
 
@@ -10,6 +10,6 @@
 
 # Breaking
 
-- none
+- Change name of number function WholeNumberGreaterThanZeroConverter to toWholeNumberGreaterThanZero.
 
 ###### Copyright (c) 2020 QBCart Inc. All rights reserved.
