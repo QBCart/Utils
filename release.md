@@ -2,7 +2,7 @@
 
 # New
 
-- First alpha release.
+- Utilities common across the QBCart javascript ecosystem..
 
 # Fixes
 
