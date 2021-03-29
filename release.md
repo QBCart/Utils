@@ -1,15 +1,15 @@
-<img align="center" src="https://avatars2.githubusercontent.com/u/45455933" width="96" height="96" />
+# <img align="center" src="https://avatars2.githubusercontent.com/u/45455933" width="96" height="96" /> Utils
 
-# New
-
-- none
-
-# Fixes
+### New
 
 - none
 
-# Breaking
+### Fixes
 
-- Change name of number function WholeNumberGreaterThanZeroConverter to toWholeNumberGreaterThanZero.
+- none
 
-###### Copyright (c) 2020 QBCart Inc. All rights reserved.
+### Breaking
+
+- none
+
+###### Licensed under MIT - Copyright (c) 2021 QBCart Inc. All rights reserved.
