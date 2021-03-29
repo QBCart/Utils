@@ -4,7 +4,7 @@ Utilities common across the QBCart javascript ecosystem.
 
 ### Deployments
 
-| CI | Release | ESM | Types |
+| CI | Release | ESM | NPM |
 | --- | --- | --- | --- |
 | ![CI](https://github.com/QBCart/Utils/workflows/CI/badge.svg) | ![Latest](https://github.com/QBCart/Utils/workflows/Latest/badge.svg) | ![Demo](https://github.com/QBCart/Utils/workflows/Demo/badge.svg) | ![npm](https://github.com/QBCart/Utils/workflows/npm/badge.svg) ![npm](https://img.shields.io/npm/v/@qbcart/utils?style=plastic) |
 
