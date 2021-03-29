@@ -4,8 +4,8 @@
  * This code can only be used and/or distributed with express permission.
  */
 
-import { usCurrencyFormatter, toUSCurrency } from './currency';
-import { isNumber, toWholeNumberGreaterThanZero } from './number';
+import { usCurrencyFormatter, toUSCurrency } from './currency.js';
+import { isNumber, toWholeNumberGreaterThanZero } from './number.js';
 
 export {
   usCurrencyFormatter,
