@@ -5,18 +5,18 @@ name: Demo
 ######################################
 on:
   push:
-    branches:
-      - main
-    paths:
-      - 'src/**'
+    # branches:
+    #   - main
+    # paths:
+    #   - 'src/**'
 
 ###################
 # Set Global Envs #
 ###################
 env:
   NODE_VERSION: '14'
-  DEMO_STORAGE_NAME: qbcdemo
-  SUBSCRIPTION_ID: ${{ secrets.DEMO_SUBSCRIPTION_ID }}
+  DEMO_STORAGE_NAME: ${{ secrets.ESM_STORAGE_NAME }}
+  SUBSCRIPTION_ID: ${{ secrets.QBC_SUBSCRIPTION_ID }}
 
 ############
 # Set Jobs #
