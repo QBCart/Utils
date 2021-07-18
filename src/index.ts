@@ -6,8 +6,8 @@
  * LICENSE file in the root directory of this source repo.
  */
 
-import { usCurrencyFormatter, toUSCurrency } from './currency.js';
-import { isNumber, toWholeNumberGreaterThanZero } from './number.js';
+import { usCurrencyFormatter, toUSCurrency } from './utils/currency.js';
+import { isNumber, toWholeNumberGreaterThanZero } from './utils/number.js';
 
 export {
   usCurrencyFormatter,

@@ -10,14 +10,6 @@ on:
       - 'v[0-9]+.[0-9]+.[0-9]+-beta.[0-9]+'
       - 'v[0-9]+.[0-9]+.[0-9]+'
 
-###################
-# Set Global Envs #
-###################
-env:
-  node_version: '14'
-  STORAGE_NAME: ${{ secrets.ESM_STORAGE_NAME }}
-  SUBSCRIPTION_ID: ${{ secrets.QBC_SUBSCRIPTION_ID }}
-
 ############
 # Set Jobs #
 ############
@@ -59,7 +51,7 @@ jobs:
         # Setup .npmrc file to publish to npm
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ env.NODE_VERSION }}
+          node-version: ${{ fromJSON(secrets.PROD_ESM).node }}
           registry-url: https://registry.npmjs.org
           scope: '@qbcart'
         env:
@@ -73,13 +65,13 @@ jobs:
         shell: bash
         run: npm install
 
-      #################
-      # Build Package #
-      #################
-      - name: Build Package
+      ###############
+      # Build Types #
+      ###############
+      - name: Build Types
         working-directory: .
         shell: bash
-        run: npm run build
+        run: npm run build:npm
 
       ######################
       # Copy Package Files #
@@ -88,14 +80,14 @@ jobs:
         working-directory: .
         shell: bash
         run: |
-          cp package.json dist
-          cp README.md dist
+          cp package.json publish_npm
+          cp README.md publish_npm
 
-      ##################
-      # Publish To NPM #
-      ##################
-      - name: Publish To NPM
-        working-directory: dist
+      ########################
+      # Publish Types To NPM #
+      ########################
+      - name: Publish Types To NPM
+        working-directory: publish_npm
         shell: bash
         run: |
           npm version $ver --allow-same-version
@@ -103,6 +95,36 @@ jobs:
           npm publish --access public
         env:
           ver: ${{ env.new_version }}
+
+      #############
+      # Build ESM #
+      #############
+      - name: Build ESM
+        working-directory: .
+        shell: bash
+        run: npm run build
+        env:
+          SNOWPACK_PUBLIC_STREAMING_URL: ${{ fromJSON(secrets.PROD_ESM).cdn }}
+
+      ###############
+      # Azure Login #
+      ###############
+      - name: Azure Login
+        uses: Azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          allow-no-subscriptions: true
+
+      ###########################
+      # Release into Production #
+      ###########################
+      - name: Release into Production
+        working-directory: .
+        shell: bash
+        run: |
+          az account set --subscription ${{ fromJSON(secrets.PROD_ESM).subscriptionId }}
+          az storage blob delete-batch --account-name ${{ fromJSON(secrets.PROD_ESM).storageName }} --source '$web' --pattern 'utils/*'
+          az storage blob upload-batch --account-name ${{ fromJSON(secrets.PROD_ESM).storageName }} --source 'publish_esm' --destination '$web/utils' --auth-mode key --content-cache 'max-age=3600, must-revalidate'
 
       #########################
       # Create GitHub Release #
@@ -118,23 +140,3 @@ jobs:
           prerelease: ${{ contains(env.new_version, 'alpha') || contains(env.new_version, 'beta') }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      ###############
-      # Azure Login #
-      ###############
-      - name: Azure Login
-        uses: Azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-          allow-no-subscriptions: true
-
-      ##########################
-      # Publish ESM To Storage #
-      ##########################
-      - name: Publish ESM To Storage
-        working-directory: .
-        shell: bash
-        run: |
-          az account set --subscription ${{ env.SUBSCRIPTION_ID }}
-          az storage blob delete-batch --account-name ${{ env.STORAGE_NAME }} --source '$web' --pattern 'utils/*'
-          az storage blob upload-batch --account-name ${{ env.STORAGE_NAME }} --source 'dist/esm' --destination '$web/utils' --auth-mode key --content-cache 'max-age=3600, must-revalidate'
