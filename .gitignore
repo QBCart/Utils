@@ -2,7 +2,8 @@
 
 # generated output
 node_modules
-dist
+publish_npm
+publish_esm
 build
 .snowpack
 
