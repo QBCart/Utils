@@ -29,7 +29,9 @@
   },
   "homepage": "https://github.com/QBCart/Utils#readme",
   "scripts": {
-    "build": "rimraf dist && tsc && tsc -p tsconfig.esm.json",
+    "start": "SNOWPACK_PUBLIC_STREAMING_URL=https://qbcdemo.z13.web.core.windows.net snowpack build",
+    "build": "snowpack build",
+    "build:npm": "tsc",
     "lint": "eslint src/**/*.ts",
     "format:check": "prettier --check .",
     "format:fix": "prettier --write .",
@@ -44,6 +46,8 @@
     "lint-staged": "^10.5.4",
     "prettier": "^2.3.2",
     "rimraf": "^3.0.2",
+    "snowpack": "^3.8.2",
+    "snowpack-plugin-import-map": "^1.1.4",
     "typescript": "^4.3.5"
   },
   "husky": {
