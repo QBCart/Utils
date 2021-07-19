@@ -65,10 +65,10 @@ jobs:
         shell: bash
         run: npm install
 
-      ###############
-      # Build Types #
-      ###############
-      - name: Build Types
+      #################
+      # Build NPM PKG #
+      #################
+      - name: Build NPM PKG
         working-directory: .
         shell: bash
         run: npm run build:npm
@@ -83,10 +83,10 @@ jobs:
           cp package.json publish_npm
           cp README.md publish_npm
 
-      ########################
-      # Publish Types To NPM #
-      ########################
-      - name: Publish Types To NPM
+      ##################
+      # Publish To NPM #
+      ##################
+      - name: Publish To NPM
         working-directory: publish_npm
         shell: bash
         run: |
